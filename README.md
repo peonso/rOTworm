@@ -4,7 +4,7 @@ rOTworm is a free, open-source server emulator for the classic Tibia Protocol 7.
 
 The goal of this project is to modernize a legacy codebase, making it stable and compilable on current systems while preserving the authentic 7.72 gameplay experience.
 
-This repository is a fork of [OTHire](https://github.com/Ezzz-dev/OTHire), which is itself a fork of the original [OTServ](https://github.com/opentibia/otserv).
+This repository is a fork of [OTHire](https://github.com/Ezzz-dev/OTHire), which is itself a fork of the original [OTServ](https://github.com/opentibia/server).
 
 ## License
 
