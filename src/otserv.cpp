@@ -1,3 +1,4 @@
+﻿#include "otpch.h"
 //////////////////////////////////////////////////////////////////////
 // OpenTibia - an opensource roleplaying game
 //////////////////////////////////////////////////////////////////////
@@ -723,3 +724,4 @@ void mainLoader(const CommandLineOptions& command_opts, ServiceManager* service_
 	}
 	g_loaderSignal.notify_all();
 }
+

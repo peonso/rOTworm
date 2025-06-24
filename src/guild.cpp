@@ -1,3 +1,4 @@
+﻿#include "otpch.h"
 //////////////////////////////////////////////////////////////////////
 // OpenTibia - an opensource roleplaying game
 //////////////////////////////////////////////////////////////////////
@@ -525,3 +526,4 @@ void Guild::removeEnemy(uint32_t guildId)
 	if(isEnemy(guildId) != 0)
 		enemyGuilds.erase(guildId);
 }
+

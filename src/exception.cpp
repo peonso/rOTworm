@@ -1,3 +1,4 @@
+﻿#include "otpch.h"
 //////////////////////////////////////////////////////////////////////
 // OpenTibia - an opensource roleplaying game
 //////////////////////////////////////////////////////////////////////
@@ -144,4 +145,5 @@ long ExceptionHandler::MiniDumpExceptionHandler(EXCEPTION_POINTERS* exceptionPoi
 	return EXCEPTION_EXECUTE_HANDLER;
 }
 #endif
+
 

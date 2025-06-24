@@ -1,3 +1,4 @@
+﻿#include "otpch.h"
 //////////////////////////////////////////////////////////////////////
 // OpenTibia - an opensource roleplaying game
 //////////////////////////////////////////////////////////////////////
@@ -2561,3 +2562,4 @@ void ProtocolGame::RemoveContainerItem(NetworkMessage_ptr msg, uint8_t cid, uint
 	msg->AddByte(cid);
 	msg->AddByte(slot);
 }
+

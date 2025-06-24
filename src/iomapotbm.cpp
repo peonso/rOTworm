@@ -1,3 +1,4 @@
+﻿#include "otpch.h"
 //////////////////////////////////////////////////////////////////////
 // OpenTibia - an opensource roleplaying game
 //////////////////////////////////////////////////////////////////////
@@ -538,3 +539,4 @@ bool IOMapOTBM::loadMap(Map* map, const std::string& identifier)
 	std::cout << "Notice: [OTBM Loader] Loading time : " << (OTSYS_TIME() - start)/(1000.) << " s" << std::endl;
 	return true;
 }
+

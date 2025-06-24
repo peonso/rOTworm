@@ -1,3 +1,4 @@
+﻿#include "otpch.h"
 //////////////////////////////////////////////////////////////////////
 // OpenTibia - an opensource roleplaying game
 //////////////////////////////////////////////////////////////////////
@@ -89,7 +90,7 @@ void ServiceManager::stop()
 		it != m_acceptors.end(); ++it)
 	{
 		try{
-			m_io_service.post(boost::bind(&ServicePort::onStopServer, it->second));
+			it->second->onStopServer();
 		}
 		catch(boost::system::system_error& e){
 			LOG_MESSAGE("NETWORK", LOGTYPE_ERROR, 1, e.what());
@@ -107,8 +108,8 @@ void ServiceManager::stop()
 ///////////////////////////////////////////////////////////////////////////////
 // ServicePort
 
-ServicePort::ServicePort(boost::asio::io_service& io_service) :
-	m_io_service(io_service),
+ServicePort::ServicePort(boost::asio::io_context& io_context) :
+	m_io_service(io_context),
 	m_acceptor(NULL),
 	m_serverPort(0),
 	m_pendingStart(false)
@@ -175,7 +176,7 @@ void ServicePort::onAccept(boost::asio::ip::tcp::socket* socket, const boost::sy
 		const boost::asio::ip::tcp::endpoint endpoint = socket->remote_endpoint(error);
 		uint32_t remote_ip = 0;
 		if(!error){
-			remote_ip = htonl(endpoint.address().to_v4().to_ulong());
+			remote_ip = htonl(endpoint.address().to_v4().to_uint());
 		}
 
 		if(remote_ip != 0 && g_bans.acceptConnection(remote_ip)){
@@ -269,7 +270,7 @@ void ServicePort::open(uint16_t port)
 		if(g_config.getNumber(ConfigManager::BIND_ONLY_GLOBAL_ADDRESS))
 		{
 			m_acceptor = new boost::asio::ip::tcp::acceptor(m_io_service, boost::asio::ip::tcp::endpoint(
-				boost::asio::ip::address(boost::asio::ip::address_v4::from_string(g_config.getString(ConfigManager::IP))), m_serverPort));
+				boost::asio::ip::address(boost::asio::ip::make_address_v4(g_config.getString(ConfigManager::IP))), m_serverPort));
 		}
 		else
 		{
@@ -317,3 +318,4 @@ bool ServicePort::add_service(Service_ptr new_svc)
 	m_services.push_back(new_svc);
 	return true;
 }
+

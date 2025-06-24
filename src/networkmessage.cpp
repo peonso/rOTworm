@@ -1,3 +1,4 @@
+﻿#include "otpch.h"
 //////////////////////////////////////////////////////////////////////
 // OpenTibia - an opensource roleplaying game
 //////////////////////////////////////////////////////////////////////
@@ -142,3 +143,4 @@ void NetworkMessage::AddItemId(uint16_t itemId){
 	const ItemType &it = Item::items[itemId];
 	AddU16(it.clientId);
 }
+

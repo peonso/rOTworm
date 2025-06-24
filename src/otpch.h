@@ -1,8 +1,5 @@
-#ifdef __OTSERV_OTCP_H__
-#error "Precompiled header should only be included once"
-#endif
-
-#define __OTSERV_OTCP_H__
+#ifndef __OTSERV_OTCP_H__ // <--- CHANGE: Use a standard #ifndef guard
+#define __OTSERV_OTCP_H__ // <--- CHANGE: Define the guard right away
 
 // Definitions should be global.
 #include "definitions.h"
@@ -31,6 +28,8 @@
 #include <vector>
 #include <map>
 #include <string>
+#include <algorithm>
+#include <random>
 //lua
 extern "C"
 {
@@ -41,5 +40,6 @@ extern "C"
 //otserv
 #include "thing.h"
 
-#endif
+#endif // __USE_OTPCH__
 
+#endif // __OTSERV_OTCP_H__  <--- CHANGE: End the #ifndef block

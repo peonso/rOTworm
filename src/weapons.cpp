@@ -1,3 +1,4 @@
+﻿#include "otpch.h"
 //////////////////////////////////////////////////////////////////////
 // OpenTibia - an opensource roleplaying game
 //////////////////////////////////////////////////////////////////////
@@ -953,7 +954,8 @@ bool WeaponDistance::useWeapon(Player* player, Item* item, Creature* target) con
 			destList.push_back(std::make_pair(1, 0));
 			destList.push_back(std::make_pair(1, 1));
 
-			std::random_shuffle(destList.begin(), destList.end());
+			static std::mt19937 g(time(NULL)); // A simple random number generator
+			std::shuffle(destList.begin(), destList.end(), g);
 
 			Position destPos = target->getPosition();
 			Tile* tmpTile = NULL;
@@ -1135,3 +1137,4 @@ int32_t WeaponWand::getWeaponDamage(const Player* player, const Creature* target
 
 	return random_range(-minValue, -maxValue);
 }
+

@@ -1,3 +1,4 @@
+﻿#include "otpch.h"
 //////////////////////////////////////////////////////////////////////
 // OpenTibia - an opensource roleplaying game
 //////////////////////////////////////////////////////////////////////
@@ -532,7 +533,8 @@ bool Npc::getRandomStep(Direction& dir)
 	}
 
 	if (!dirList.empty()){
-		std::random_shuffle(dirList.begin(), dirList.end());
+		static std::mt19937 g(time(NULL)); // A simple random number generator
+		std::shuffle(dirList.begin(), dirList.end(), g);
 		dir = dirList[random_range(0, dirList.size() - 1)];
 		return true;
 	}
@@ -1105,3 +1107,4 @@ void NpcScript::onThink()
 		std::cout << "[Error] Call stack overflow. NpcScript::onThink" << std::endl;
 	}
 }
+

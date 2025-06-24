@@ -1,3 +1,4 @@
+﻿#include "otpch.h"
 //////////////////////////////////////////////////////////////////////
 // OpenTibia - an opensource roleplaying game
 //////////////////////////////////////////////////////////////////////
@@ -1213,7 +1214,8 @@ bool Monster::pushItem(Item* item, int32_t radius)
 	relList.push_back(relPair(1, 0));
 	relList.push_back(relPair(1, 1));
 
-	std::random_shuffle(relList.begin(), relList.end());
+	static std::mt19937 g(time(NULL)); // A simple random number generator
+	std::shuffle(relList.begin(), relList.end(), g);
 
 	Position tryPos;
 	for(int32_t n = 1; n <= radius; ++n){
@@ -1278,7 +1280,8 @@ bool Monster::pushCreature(Creature* creature)
 	dirList.push_back(WEST);
 	dirList.push_back(EAST);
 
-	std::random_shuffle(dirList.begin(), dirList.end());
+	static std::mt19937 g(time(NULL)); // A simple random number generator
+	std::shuffle(dirList.begin(), dirList.end(), g);
 
 	for(std::vector<Direction>::iterator it = dirList.begin(); it != dirList.end(); ++it){
 		const Position& tryPos = Spells::getCasterPosition(creature, *it);
@@ -1391,7 +1394,8 @@ bool Monster::getRandomStep(const Position& creaturePos, Direction& dir)
 	dirList.push_back(SOUTH);
 	dirList.push_back(WEST);
 	dirList.push_back(EAST);
-	std::random_shuffle(dirList.begin(), dirList.end());
+	static std::mt19937 g(time(NULL)); // A simple random number generator
+	std::shuffle(dirList.begin(), dirList.end(), g);
 
 	for(std::vector<Direction>::iterator it = dirList.begin(); it != dirList.end(); ++it){
 		if(canWalkTo(creaturePos, *it)){
@@ -1473,7 +1477,8 @@ bool Monster::getDanceStep(const Position& creaturePos, Direction& dir,
 	}
 
 	if(!dirList.empty()){
-		std::random_shuffle(dirList.begin(), dirList.end());
+		static std::mt19937 g(time(NULL)); // A simple random number generator
+		std::shuffle(dirList.begin(), dirList.end(), g);
 		dir = dirList[random_range(0, dirList.size() - 1)];
 		return true;
 	}
@@ -3367,3 +3372,4 @@ void Monster::getPathSearchParams(const Creature* creature, FindPathParams& fpp)
 		}
 	}
 }
+

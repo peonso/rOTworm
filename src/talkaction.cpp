@@ -1,3 +1,4 @@
+﻿#include "otpch.h"
 //////////////////////////////////////////////////////////////////////
 // OpenTibia - an opensource roleplaying game
 //////////////////////////////////////////////////////////////////////
@@ -465,3 +466,4 @@ bool TalkAction::forceRaid(Player* player, const std::string& words, const std::
 	player->sendTextMessage(MSG_STATUS_CONSOLE_BLUE, "Raid started.");
 	return true;
 }
+

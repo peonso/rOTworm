@@ -1,3 +1,4 @@
+﻿#include "otpch.h"
 //////////////////////////////////////////////////////////////////////
 // OpenTibia - an opensource roleplaying game
 //////////////////////////////////////////////////////////////////////
@@ -1085,3 +1086,4 @@ bool IOPlayer::cleanOnlineInfo()
 	DBQuery query;
 	return db->executeQuery("UPDATE `players` SET `online` = 0");
 }
+

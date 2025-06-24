@@ -1,0 +1,13 @@
+{
+  "name": "rotworm",
+  "version-string": "0.1.0",
+  "dependencies": [
+    "boost",
+    "sqlite3",
+    "pugixml",
+    "lua",
+    "cryptopp",
+    "libxml2",
+    "gmp"
+  ]
+}

@@ -1,3 +1,4 @@
+﻿#include "otpch.h"
 //////////////////////////////////////////////////////////////////////
 // OpenTibia - an opensource roleplaying game
 //////////////////////////////////////////////////////////////////////
@@ -231,7 +232,8 @@ bool Map::placeCreature(const Position& centerPos, Creature* creature, bool exte
 		relPosList.push_back(std::make_pair(0, 2));
 		relPosList.push_back(std::make_pair(2, 0));
 
-		std::random_shuffle(relPosList.begin(), relPosList.end());
+		static std::mt19937 g(time(NULL)); // A simple random number generator
+		std::shuffle(relPosList.begin(), relPosList.end(), g);
 	}
 
 	relPosList.push_back(std::make_pair(-1, -1));
@@ -243,7 +245,8 @@ bool Map::placeCreature(const Position& centerPos, Creature* creature, bool exte
 	relPosList.push_back(std::make_pair(1, 0));
 	relPosList.push_back(std::make_pair(1, 1));
 
-	std::random_shuffle(relPosList.begin() + (extendedPos? 4 : 0), relPosList.end());
+	static std::mt19937 g(time(NULL)); // A simple random number generator
+	std::shuffle(relPosList.begin() + (extendedPos? 4 : 0), relPosList.end(), g);
 	uint32_t radius = 1;
 
 	Position tryPos;
@@ -1238,3 +1241,4 @@ Floor* QTreeLeafNode::createFloor(uint32_t z)
 	}
 	return m_array[z];
 }
+

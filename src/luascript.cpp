@@ -1,3 +1,4 @@
+﻿#include "otpch.h"
 //////////////////////////////////////////////////////////////////////
 // OpenTibia - an opensource roleplaying game
 //////////////////////////////////////////////////////////////////////
@@ -849,7 +850,7 @@ void LuaScriptInterface::executeTimerEvent(uint32_t eventIndex)
 }
 
 int LuaScriptInterface::luaErrorHandler(lua_State *L) {
-	lua_getfield(L, LUA_GLOBALSINDEX, "debug");
+	lua_getfield(L, LUA_RIDX_GLOBALS, "debug");
 	if (!lua_istable(L, -1)) {
 		lua_pop(L, 1);
 		return 1;
@@ -2053,13 +2054,13 @@ void LuaScriptInterface::registerFunctions()
 
 	//bit operations for Lua, based on bitlib project release 24
 	//bit.bnot, bit.band, bit.bor, bit.bxor, bit.lshift, bit.rshift
-	luaL_register(m_luaState, "bit", LuaScriptInterface::luaBitReg);
+	luaL_newlib(m_luaState, LuaScriptInterface::luaBitReg); lua_setglobal(m_luaState, "bit");
 
 	//db table
-	luaL_register(m_luaState, "db", LuaScriptInterface::luaDatabaseTable);
+	luaL_newlib(m_luaState, LuaScriptInterface::luaDatabaseTable); lua_setglobal(m_luaState, "db");
 
 	//result table
-	luaL_register(m_luaState, "result", LuaScriptInterface::luaResultTable);
+	luaL_newlib(m_luaState, LuaScriptInterface::luaResultTable); lua_setglobal(m_luaState, "result");
 
 	//isGmInvisible(cid)
 	lua_register(m_luaState, "isGmInvisible", LuaScriptInterface::luaIsGmInvisible);
@@ -8898,7 +8899,7 @@ int LuaScriptInterface::luaBitNot(lua_State *L)
 int LuaScriptInterface::luaBitUNot(lua_State *L)
 {
 	uint32_t number = (uint32_t)popNumber(L);
-	lua_pushnumber(L, ~number);
+	lua_pushnumber(L, (lua_Number)(~((int64_t)number)));
 	return 1;
 }
 
@@ -9680,3 +9681,4 @@ int LuaScriptInterface::luaDoPlayerOpenChannel(lua_State* L)
 	lua_pushboolean(L, false);
 	return 1;
 }
+

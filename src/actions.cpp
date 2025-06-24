@@ -1,3 +1,4 @@
+﻿#include "otpch.h"
 //////////////////////////////////////////////////////////////////////
 // OpenTibia - an opensource roleplaying game
 //////////////////////////////////////////////////////////////////////
@@ -636,3 +637,4 @@ bool Action::executeUse(Player* player, Item* item, const PositionEx& fromPos,
 		return false;
 	}
 }
+

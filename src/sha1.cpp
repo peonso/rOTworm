@@ -1,3 +1,4 @@
+﻿#include "otpch.h"
 /*
  *	sha1.cpp
  *
@@ -588,3 +589,4 @@ unsigned SHA1::CircularShift(int bits, unsigned word)
 {
 	return ((word << bits) & 0xFFFFFFFF) | ((word & 0xFFFFFFFF) >> (32-bits));
 }
+

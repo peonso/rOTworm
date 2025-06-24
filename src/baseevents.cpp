@@ -1,3 +1,4 @@
+﻿#include "otpch.h"
 //////////////////////////////////////////////////////////////////////
 // OpenTibia - an opensource roleplaying game
 //////////////////////////////////////////////////////////////////////
@@ -228,3 +229,4 @@ bool CallBack::loadCallBack(LuaScriptInterface* _interface, std::string name)
 	m_loaded = true;
 	return true;
 }
+

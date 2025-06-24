@@ -1,4 +1,4 @@
-//////////////////////////////////////////////////////////////////////
+﻿//////////////////////////////////////////////////////////////////////
 // OpenTibia - an opensource roleplaying game
 //////////////////////////////////////////////////////////////////////
 //
@@ -41,14 +41,14 @@ uint32_t Connection::connectionCount = 0;
 extern ConfigManager g_config;
 
 Connection_ptr ConnectionManager::createConnection(boost::asio::ip::tcp::socket* socket,
-	boost::asio::io_service& io_service, ServicePort_ptr servicer)
+	boost::asio::io_context& io_context, ServicePort_ptr servicer)
 {
 	#ifdef __DEBUG_NET_DETAIL__
 	std::cout << "Create new Connection" << std::endl;
 	#endif
 
 	boost::recursive_mutex::scoped_lock lockClass(m_connectionManagerLock);
-	Connection_ptr connection = boost::shared_ptr<Connection>(new Connection(socket, io_service, servicer));
+	Connection_ptr connection = boost::shared_ptr<Connection>(new Connection(socket, io_context, servicer));
 	m_connections.push_back(connection);
 	return connection;
 }
@@ -202,7 +202,7 @@ void Connection::releaseConnection()
 
 void Connection::onStopOperation()
 {
-	//io_service thread
+	//io_context thread
 	m_connectionLock.lock();
 	m_readTimer.cancel();
 	m_writeTimer.cancel();
@@ -230,7 +230,7 @@ void Connection::deleteConnectionTask()
 	//dispather thread
 	assert(m_refCount == 0);
 	try{
-		m_io_service.dispatch(boost::bind(&Connection::onStopOperation, this));
+		boost::asio::dispatch(m_socket->get_executor(), boost::bind(&Connection::onStopOperation, this));
 	}
 	catch(boost::system::system_error& e){
 		if(m_logError){
@@ -252,7 +252,7 @@ void Connection::acceptConnection()
 {
 	try{
 		++m_pendingRead;
-		m_readTimer.expires_from_now(boost::posix_time::seconds(Connection::read_timeout));
+		m_readTimer.expires_from_now(boost::posix_time::seconds(static_cast<long>(Connection::read_timeout)));
 		m_readTimer.async_wait( boost::bind(&Connection::handleReadTimeout, boost::weak_ptr<Connection>(shared_from_this()), boost::asio::placeholders::error));
 
 		// Read size of the first packet
@@ -304,7 +304,7 @@ void Connection::parseHeader(const boost::system::error_code& error)
 
 	try{
 		++m_pendingRead;
-		m_readTimer.expires_from_now(boost::posix_time::seconds(Connection::read_timeout));
+		m_readTimer.expires_from_now(boost::posix_time::seconds(static_cast<long>(Connection::read_timeout)));
 		m_readTimer.async_wait( boost::bind(&Connection::handleReadTimeout, boost::weak_ptr<Connection>(shared_from_this()),
 			boost::asio::placeholders::error));
 
@@ -366,7 +366,7 @@ void Connection::parsePacket(const boost::system::error_code& error)
 
 	try{
 		++m_pendingRead;
-		m_readTimer.expires_from_now(boost::posix_time::seconds(Connection::read_timeout));
+		m_readTimer.expires_from_now(boost::posix_time::seconds(static_cast<long>(Connection::read_timeout)));
 		m_readTimer.async_wait( boost::bind(&Connection::handleReadTimeout, boost::weak_ptr<Connection>(shared_from_this()),
 			boost::asio::placeholders::error));
 
@@ -429,7 +429,7 @@ void Connection::internalSend(OutputMessage_ptr msg)
 
 	try{
 		++m_pendingWrite;
-		m_writeTimer.expires_from_now(boost::posix_time::seconds(Connection::write_timeout));
+		m_writeTimer.expires_from_now(boost::posix_time::seconds(static_cast<long>(Connection::write_timeout)));
 		m_writeTimer.async_wait( boost::bind(&Connection::handleWriteTimeout, boost::weak_ptr<Connection>(shared_from_this()),
 			boost::asio::placeholders::error));
 
@@ -451,7 +451,7 @@ uint32_t Connection::getIP() const
 	boost::system::error_code error;
 	const boost::asio::ip::tcp::endpoint endpoint = m_socket->remote_endpoint(error);
 	if(!error){
-		return htonl(endpoint.address().to_v4().to_ulong());
+		return htonl(endpoint.address().to_v4().to_uint());
 	}
 	else{
 		PRINT_ASIO_ERROR("Getting remote ip");
@@ -595,4 +595,5 @@ void Connection::handleWriteTimeout(boost::weak_ptr<Connection> weak_conn, const
 		}
 	}
 }
+
 

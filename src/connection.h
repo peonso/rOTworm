@@ -60,7 +60,7 @@ public:
 	}
 
 	Connection_ptr createConnection(boost::asio::ip::tcp::socket* socket,
-		boost::asio::io_service& io_service, ServicePort_ptr servicers);
+		boost::asio::io_context& io_context, ServicePort_ptr servicers);
 	void releaseConnection(Connection_ptr connection);
 	void closeAll();
 
@@ -93,12 +93,12 @@ public:
 
 private:
 	Connection(boost::asio::ip::tcp::socket* socket,
-		boost::asio::io_service& io_service,
+		boost::asio::io_context& io_context,
 		ServicePort_ptr service_port) :
 			m_socket(socket),
-			m_readTimer(io_service),
-			m_writeTimer(io_service),
-			m_io_service(io_service),
+			m_readTimer(io_context),
+			m_writeTimer(io_context),
+			m_io_service(io_context),
 			m_service_port(service_port)
 	{
 		m_refCount = 0;
@@ -166,7 +166,7 @@ private:
 	boost::asio::ip::tcp::socket* m_socket;
 	boost::asio::deadline_timer m_readTimer;
 	boost::asio::deadline_timer m_writeTimer;
-	boost::asio::io_service& m_io_service;
+	boost::asio::io_context& m_io_service;
 	ServicePort_ptr m_service_port;
 	bool m_receivedFirst;
 	bool m_writeError;

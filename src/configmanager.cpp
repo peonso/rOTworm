@@ -1,3 +1,4 @@
+﻿#include "otpch.h"
 //////////////////////////////////////////////////////////////////////
 // OpenTibia - an opensource roleplaying game
 //////////////////////////////////////////////////////////////////////
@@ -45,7 +46,7 @@ bool ConfigManager::loadFile(const std::string& _filename)
 	if(L)
 		lua_close(L);
 
-	L = lua_open();
+	L = luaL_newstate();
 
 	if(!L) return false;
 
@@ -286,7 +287,7 @@ std::string ConfigManager::getGlobalString(lua_State* _L, const std::string& _id
 		return _default;
 	}
 
-	int len = (int)lua_strlen(_L, -1);
+	int len = (int)lua_rawlen(_L, -1);
 	std::string ret(lua_tostring(_L, -1), len);
 	lua_pop(_L,1);
 
@@ -393,4 +394,5 @@ void ConfigManager::moveValue(lua_State* from, lua_State* to)
 	// Pop the value we just read
 	lua_pop(from, 1);
 }
+
 

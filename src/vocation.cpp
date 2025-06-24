@@ -1,3 +1,4 @@
+﻿#include "otpch.h"
 //////////////////////////////////////////////////////////////////////
 // OpenTibia - an opensource roleplaying game
 //////////////////////////////////////////////////////////////////////
@@ -297,3 +298,4 @@ void Vocation::debugVocation()
 		std::cout << "Skill id: " << i << " multiplier: " << skillMultipliers[i] << std::endl;
 	}
 }
+

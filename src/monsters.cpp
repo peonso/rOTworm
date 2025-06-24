@@ -1,3 +1,4 @@
+﻿#include "otpch.h"
 //////////////////////////////////////////////////////////////////////
 // OpenTibia - an opensource roleplaying game
 //////////////////////////////////////////////////////////////////////
@@ -1591,3 +1592,4 @@ Monsters::~Monsters()
 	for(MonsterMap::iterator it = monsters.begin(); it != monsters.end(); ++it)
 		delete it->second;
 }
+

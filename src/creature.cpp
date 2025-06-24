@@ -1,3 +1,4 @@
+﻿#include "otpch.h"
 //////////////////////////////////////////////////////////////////////
 // OpenTibia - an opensource roleplaying game
 //////////////////////////////////////////////////////////////////////
@@ -1806,3 +1807,4 @@ bool FrozenPathingConditionCall::operator()(const Position& startPos, const Posi
 
 	return false;
 }
+

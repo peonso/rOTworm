@@ -1,3 +1,4 @@
+﻿#include "otpch.h"
 //////////////////////////////////////////////////////////////////////
 // OpenTibia - an opensource roleplaying game
 //////////////////////////////////////////////////////////////////////
@@ -2315,3 +2316,4 @@ bool RuneSpell::executeCastSpell(Creature* creature, const LuaVariant& var)
 	}
 	return(result);
 }
+

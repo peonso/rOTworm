@@ -1,3 +1,4 @@
+﻿#include "otpch.h"
 //////////////////////////////////////////////////////////////////////
 // OpenTibia - an opensource roleplaying game
 //////////////////////////////////////////////////////////////////////
@@ -853,3 +854,4 @@ static void addLogLine(ProtocolAdmin* conn, eLogType type, int level, std::strin
 	logMsg = logMsg + message;
 	LOG_MESSAGE("OTADMIN", type, level, logMsg);
 }
+

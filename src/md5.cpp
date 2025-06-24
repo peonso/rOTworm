@@ -1,3 +1,4 @@
+﻿#include "otpch.h"
 // Free for all implementation of the MD5 hash algorithm
 
 /*
@@ -263,3 +264,4 @@ void MD5Final (MD5_CTX *mdContext)
 		mdContext->digest[ii+3] = (unsigned char)((mdContext->buf[i] >> 24) & 0xFF);
 	}
 }
+

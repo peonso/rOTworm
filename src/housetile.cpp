@@ -1,3 +1,4 @@
+﻿#include "otpch.h"
 //////////////////////////////////////////////////////////////////////
 // OpenTibia - an opensource roleplaying game
 //////////////////////////////////////////////////////////////////////
@@ -144,3 +145,4 @@ Cylinder* HouseTile::__queryDestination(int32_t& index, const Thing* thing, Item
 
 	return Tile::__queryDestination(index, thing, destItem, flags);
 }
+

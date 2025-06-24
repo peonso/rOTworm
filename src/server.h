@@ -76,7 +76,7 @@ public:
 class ServicePort : boost::noncopyable, public boost::enable_shared_from_this<ServicePort>
 {
 public:
-	ServicePort(boost::asio::io_service& io_service);
+	ServicePort(boost::asio::io_context& io_context);
 	~ServicePort();
 
 	static void openAcceptor(boost::weak_ptr<ServicePort> weak_service, uint16_t port);
@@ -94,7 +94,7 @@ public:
 protected:
 	void accept();
 
-	boost::asio::io_service& m_io_service;
+	boost::asio::io_context& m_io_service;
 	boost::asio::ip::tcp::acceptor* m_acceptor;
 	std::vector<Service_ptr> m_services;
 
@@ -128,7 +128,7 @@ protected:
 
 	std::map<uint16_t, ServicePort_ptr> m_acceptors;
 
-	boost::asio::io_service m_io_service;
+	boost::asio::io_context m_io_service;
 	boost::asio::deadline_timer death_timer;
 	bool running;
 };

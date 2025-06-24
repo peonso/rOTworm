@@ -1,3 +1,4 @@
+﻿#include "otpch.h"
 //////////////////////////////////////////////////////////////////////
 // OpenTibia - an opensource roleplaying game
 //////////////////////////////////////////////////////////////////////
@@ -212,3 +213,4 @@ void RSA::getPublicKey(char* buffer)
 	memset(buffer, 0, 128 - count);
 	mpz_export(&buffer[128 - count], NULL, 1, 1, 0, 0, m_mod);
 }
+

@@ -1,3 +1,4 @@
+﻿#include "otpch.h"
 //////////////////////////////////////////////////////////////////////
 // OpenTibia - an opensource roleplaying game
 //////////////////////////////////////////////////////////////////////
@@ -262,3 +263,4 @@ void OutputMessagePool::addToAutoSend(OutputMessage_ptr msg)
 	m_toAddQueue.push_back(msg);
 	m_outputPoolLock.unlock();
 }
+
