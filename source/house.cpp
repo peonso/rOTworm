@@ -39,7 +39,7 @@ House::House(uint32_t _id) :
 transfer_container(ITEM_LOCKER1)
 {
 	isLoaded = false;
-	name = "OTHire headquarter (Flat 1, Area 42)";
+	name = "OTServ headquarter (Flat 1, Area 42)";
 	owner = 0;
 	posEntry.x = 0;
 	posEntry.y = 0;

@@ -23,7 +23,7 @@ mapkind = "OTBM"
 servername = "OTServ"
 
 -- server location
-location = "Germany"
+location = "Earth"
 
 -- server ip (the ip that server listens on)
 ip = "127.0.0.1"
@@ -49,13 +49,13 @@ admin_port = "7171"
 url = "http://otland.net"
 
 -- server owner name
-ownername = "Ezzz"
+ownername = "Tliff"
 
 -- server owner email
-owneremail = ""
+owneremail = "otserv@tibia.de"
 
 -- world name
-worldname = "OTHire"
+worldname = "OTServ"
 
 -- world type
 -- options: openpvp/pvp, optionalpvp/no-pvp, hardcorepvp/pvp-enforced
@@ -248,8 +248,8 @@ despawnrange = 2
 -- how many square metters can a monster be far from his spawn before despawning
 despawnradius = 50
 
---should players be able to hit invisible creatures using not AOE runes? (default: false)
-can_attack_invisible = false
+--should players be able to hit invisible creatures using not AOE runes? (default: true)
+can_attack_invisible = true
 
 --players with a level smaller than this number can't be attacked by other players. Set it to to 0 to disable
 min_pvp_level = 0
@@ -276,11 +276,11 @@ maxmessagebuffer = 4
 lua_excepted_type_errors_enabled = false
 
 -- motd (the message box that you sometimes get before you choose characters)
-motd = "Welcome to OTHire."
+motd = "Welcome to OTServ."
 motdnum = "1"
 
 -- login message
-loginmsg = "Welcome to OTHire."
+loginmsg = "Welcome to OTServ."
 
 -- how many logins attempts until ip is temporary disabled
 -- set to 0 to disable
@@ -293,7 +293,7 @@ retrytimeout = 5000
 logintimeout = 60 * 1000
 
 -- What is the maximum number of packages the client can send per second?
-max_packets_per_second = 25
+max_packets_per_second = 35
 
 -- how deep queryDestination should look for free slots (default -1, infinite)
 player_querydestination_deepness = -1
@@ -345,3 +345,12 @@ sql_host = "127.0.0.1"
 sql_port = 3306
 sql_user = "root"
 sql_pass = ""
+
+-- Guild War Fee
+-- The addition 'war charge' to start a guild war (default: 1000)
+-- To disable set to 0
+guild_war_fee = 1000
+ 
+-- if this is set to false, guild wars end immediatelly when frag_limit is reached (it ends in-game)
+-- (on cipsoft tibia the guild wars just end when server (re)starts - set this to true to emulate original tibia)
+guild_wars_end_only_on_startup = false

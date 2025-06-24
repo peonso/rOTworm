@@ -23,7 +23,7 @@ mapkind = "OTBM"
 servername = "OTServ"
 
 -- server location
-location = "Germany"
+location = "Earth"
 
 -- server ip (the ip that server listens on)
 ip = "127.0.0.1"
@@ -49,13 +49,13 @@ admin_port = "7171"
 url = "http://otland.net"
 
 -- server owner name
-ownername = "Ezzz"
+ownername = "Tliff"
 
 -- server owner email
-owneremail = ""
+owneremail = "otserv@tibia.de"
 
 -- world name
-worldname = "OTHire"
+worldname = "OTServ"
 
 -- world type
 -- options: openpvp/pvp, optionalpvp/no-pvp, hardcorepvp/pvp-enforced
@@ -276,11 +276,11 @@ maxmessagebuffer = 4
 lua_excepted_type_errors_enabled = false
 
 -- motd (the message box that you sometimes get before you choose characters)
-motd = "Welcome to OTHire."
+motd = "Welcome to OTServ."
 motdnum = "1"
 
 -- login message
-loginmsg = "Welcome to OTHire."
+loginmsg = "Welcome to OTServ."
 
 -- how many logins attempts until ip is temporary disabled
 -- set to 0 to disable
