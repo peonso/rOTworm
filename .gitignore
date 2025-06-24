@@ -1,4 +1,44 @@
-# Ignore build files
+# ===================================================================
+# rOTworm .gitignore
+#
+# This file tells Git which files and folders to ignore. It includes
+# rules for the new CMake build system, the legacy Autotools system,
+# and common runtime files.
+# ===================================================================
+
+# --- Modern CMake Build System (IMPORTANT) ---
+# This is the primary build folder for CMake on all platforms.
+# It contains all temporary files, objects, and the final executable.
+/build/
+
+# --- Compiled Binaries (for Local Testing) ---
+# Ignore the final executables and library files.
+*.exe
+*.dll
+
+# --- User Configuration ---
+# Ignore the local configuration file. The .dist file is tracked.
+config.lua
+
+# --- Runtime Logs ---
+# Ignore logs generated when the server is running.
+otlog.txt
+client_assertions.txt
+mem_dump.txt
+report.txt
+player_reports.txt
+
+# --- Editor & OS Specific ---
+# Ignore settings folder for Visual Studio Code.
+/.vscode/
+
+# Ignore common OS-generated files.
+._*
+.DS_Store
+Thumbs.db
+
+# --- Legacy Autotools (Linux/macOS) ---
+# Preserving ignore rules from the original OTHire project.
 *.o
 source/.deps/
 source/Makefile
@@ -8,7 +48,6 @@ source/autom4te.cache/
 source/config.h
 source/config.h.in
 source/config.log
-source/config.lua
 source/config.status
 source/configure
 source/depcomp
@@ -17,15 +56,3 @@ source/missing
 source/otserv
 source/stamp-h1
 source/config.h.in~
-
-# OS
-._*
-.DS_Store
-Thumbs.db
-
-# Logs
-otlog.txt
-client_assertions.txt
-mem_dump.txt
-report.txt
-player_reports.txt
