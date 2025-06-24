@@ -1,31 +1,11 @@
-# OTHire [![Build Status](https://travis-ci.org/TwistedScorpio/OTHire.svg?branch=master)](https://travis-ci.org/TwistedScorpio/OTHire)
+# rOTworm
 
-# Update 2019
-   - Please, consider working your projects and codebases on https://github.com/TwistedScorpio/Nostalrius
-	 
-OTHire is a free MMORPG emulation, that creates a own gameworld server,
-based on the CIPSoft's Tibia version **7.72**.
-It is a fork of the [OpenTibia Server](https://github.com/opentibia/server) project.
+rOTworm is a free, open-source server emulator for the classic Tibia Protocol 7.72.
 
-### Getting Started
+The goal of this project is to modernize a legacy codebase, making it stable and compilable on current systems while preserving the authentic 7.72 gameplay experience.
 
-* Compatible AAC, ZnoteAAC [HERE](https://github.com/Znote/ZnoteAAC).
-* Flags calculator [HERE](https://diegorodriguesvieira.github.io/flags-calculator/).
-* MySql_Schema.sql default `account // password` is `123456 // tibia`.
-* For more information check our [Wiki](https://github.com/TwistedScorpio/OTHire/wiki).
+This repository is a fork of [OTHire](https://github.com/Ezzz-dev/OTHire), which is itself a fork of the original [OTServ](https://github.com/otserv/otserv).
 
-#### Using Docker
+## License
 
-If you want, you can use Docker to compile it.
-
-```
-$ docker-compose build
-```
-
-It will start a Alpine container, install dependencies and compile the current code from `source/` into the container. Works on any machine with Docker installed.
-
-### Issues and Support
-
-If you need help, please visit [our OTLand forum thread](https://otland.net/threads/7-72-othire-0-0-3.246964/).
-We use the [issue tracker on GitHub](https://github.com/TwistedScorpio/OTHire/issues),
-where you can posts errors and bugs found and also suggest enhancements.
+This project is licensed under the **GNU GPLv3**. The core requirement of this license is that if you **distribute** this software or a modified version of it, you must also make the corresponding source code available under the same GPLv3 license.
